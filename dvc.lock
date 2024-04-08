@@ -1,0 +1,77 @@
+schema: '2.0'
+stages:
+  process:
+    cmd: python file/process.py
+    deps:
+    - path: file/config.yaml
+      hash: md5
+      md5: 05b232c14e7c0351960789762be32975
+      size: 20
+    - path: file/myParams.yaml
+      hash: md5
+      md5: 308ce7451fbfc90822b2e1c9367a590c
+      size: 85
+    - path: file/process.py
+      hash: md5
+      md5: 0ed63a28240942e3bd8642e89406cd51
+      size: 589
+    - path: file/weatherdata.zip
+      hash: md5
+      md5: d9cf5ea695f4cd5b7d370a8b014bf61e
+      size: 19398796
+    outs:
+    - path: file/CalculatedMonthly.csv
+      hash: md5
+      md5: 69d5c705922dd88a01b1f58967bcf954
+      size: 257
+  evaluate:
+    cmd: python file/evaluate.py
+    deps:
+    - path: file/ActualMonthly.csv
+      hash: md5
+      md5: bf490a8ea3d479155e3647d219e1404c
+      size: 93
+    - path: file/CalculatedMonthly.csv
+      hash: md5
+      md5: 69d5c705922dd88a01b1f58967bcf954
+      size: 257
+    - path: file/config.yaml
+      hash: md5
+      md5: 05b232c14e7c0351960789762be32975
+      size: 20
+  prepare:
+    cmd: python file/prepare.py
+    deps:
+    - path: file/prepare.py
+      hash: md5
+      md5: 4a6191142eaa4e8e90e91c7fa23b9ba1
+      size: 1441
+    - path: file/weatherdata.zip
+      hash: md5
+      md5: d9cf5ea695f4cd5b7d370a8b014bf61e
+      size: 19398796
+    outs:
+    - path: file/ActualMonthly.csv
+      hash: md5
+      md5: bf490a8ea3d479155e3647d219e1404c
+      size: 93
+    - path: file/myParams.yaml
+      hash: md5
+      md5: 308ce7451fbfc90822b2e1c9367a590c
+      size: 85
+  download:
+    cmd: python file/download.py
+    deps:
+    - path: file/config.yaml
+      hash: md5
+      md5: 05b232c14e7c0351960789762be32975
+      size: 20
+    - path: file/download.py
+      hash: md5
+      md5: be6fcd16a80f01b011ea12a9e82a4590
+      size: 971
+    outs:
+    - path: file/weatherdata.zip
+      hash: md5
+      md5: d9cf5ea695f4cd5b7d370a8b014bf61e
+      size: 19398796
